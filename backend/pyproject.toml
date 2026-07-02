@@ -1,0 +1,19 @@
+[project]
+name = "moon-backend"
+version = "0.1.0"
+description = "Moon AI Agent - Backend API"
+requires-python = ">=3.10"
+dependencies = [
+    "fastapi>=0.104.0",
+    "uvicorn[standard]>=0.24.0",
+    "python-jose[cryptography]>=3.3.0",
+    "passlib[bcrypt]>=1.7.4",
+    "python-multipart>=0.0.6",
+    "pydantic>=2.0.0",
+    "httpx>=0.25.0",
+    "aiosqlite>=0.19.0",
+]
+
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"

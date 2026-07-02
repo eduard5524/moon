@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat - Moon AI</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/chat.css">
+</head>
+<body>
+    <!-- Chat Navbar -->
+    <nav class="navbar scrolled chat-nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <span class="logo-icon">&#9790;</span>
+                <span class="logo-text">Moon</span>
+            </a>
+            <div class="chat-nav-center">
+                <span class="model-badge">
+                    <span class="status-dot active"></span>
+                    DeepSeek AI
+                </span>
+            </div>
+            <div class="nav-actions">
+                <button id="clear-chat-btn" class="btn btn-ghost btn-sm" title="Clear history">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                    Clear
+                </button>
+                <div class="user-menu">
+                    <button id="user-menu-btn" class="btn btn-ghost btn-sm">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        <span id="username-display">User</span>
+                    </button>
+                    <div class="user-dropdown" id="user-dropdown">
+                        <a href="#" id="logout-btn">Sign Out</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Chat Container -->
+    <div class="chat-container">
+        <!-- Welcome State -->
+        <div class="chat-welcome" id="chat-welcome">
+            <div class="welcome-icon">&#9790;</div>
+            <h2>Moon AI</h2>
+            <p>Your autonomous AI software engineer. Ask me anything about coding, architecture, debugging, or deployment.</p>
+            <div class="welcome-suggestions">
+                <button class="suggestion-chip" data-msg="Help me fix a bug in my authentication flow">Fix an auth bug</button>
+                <button class="suggestion-chip" data-msg="Design a REST API for a todo application">Design a REST API</button>
+                <button class="suggestion-chip" data-msg="Explain the difference between SQL and NoSQL databases">SQL vs NoSQL</button>
+                <button class="suggestion-chip" data-msg="Write a Dockerfile for a Node.js application">Write a Dockerfile</button>
+            </div>
+        </div>
+
+        <!-- Messages -->
+        <div class="chat-messages" id="chat-messages"></div>
+
+        <!-- Input -->
+        <div class="chat-input-container">
+            <form id="chat-form" class="chat-input-form">
+                <div class="chat-input-wrapper">
+                    <textarea id="chat-input" placeholder="Ask Moon anything..." rows="1" autofocus></textarea>
+                    <button type="submit" id="send-btn" class="send-button" disabled>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                    </button>
+                </div>
+                <div class="chat-input-footer">
+                    <span>Moon AI powered by DeepSeek. Responses may not always be accurate.</span>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/config.js"></script>
+    <script src="js/chat.js"></script>
+</body>
+</html>
