@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agents - Moon</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar scrolled">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                <span class="logo-icon">&#9790;</span>
+                <span class="logo-text">Moon</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../index.html#features">Features</a></li>
+                <li><a href="../index.html#architecture">Architecture</a></li>
+                <li><a href="../index.html#agents">Agents</a></li>
+                <li><a href="index.html" class="nav-docs-link">Docs</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="https://github.com/eduard5524/moon" class="btn btn-ghost" target="_blank">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    GitHub
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="docs-layout">
+        <aside class="docs-sidebar">
+            <h4>Getting Started</h4>
+            <ul>
+                <li><a href="getting-started.html">Introduction</a></li>
+                <li><a href="getting-started.html#installation">Installation</a></li>
+                <li><a href="getting-started.html#quickstart">Quick Start</a></li>
+            </ul>
+            <h4>Core Concepts</h4>
+            <ul>
+                <li><a href="architecture.html">Architecture</a></li>
+                <li><a href="agents.html" class="active">Agents</a></li>
+                <li><a href="architecture.html#task-queue">Task Queue</a></li>
+                <li><a href="architecture.html#memory">Memory System</a></li>
+            </ul>
+            <h4>Agents</h4>
+            <ul>
+                <li><a href="agents.html#coding">Coding Agent</a></li>
+                <li><a href="agents.html#testing">Testing Agent</a></li>
+                <li><a href="agents.html#documentation">Documentation Agent</a></li>
+                <li><a href="agents.html#deployment">Deployment Agent</a></li>
+            </ul>
+            <h4>Integrations</h4>
+            <ul>
+                <li><a href="integrations.html">Overview</a></li>
+                <li><a href="integrations.html#git">Git</a></li>
+                <li><a href="integrations.html#docker">Docker</a></li>
+                <li><a href="integrations.html#cloud">Cloud Providers</a></li>
+            </ul>
+        </aside>
+
+        <main class="docs-content">
+            <h1>Specialized Agents</h1>
+            <p>Moon's multi-agent architecture delegates work to specialized agents, each optimized for a specific domain of software engineering.</p>
+
+            <h2 id="coding">Coding Agent</h2>
+            <p>The Coding Agent is responsible for all code generation, modification, and refactoring tasks. It understands project structure, coding conventions, and language-specific best practices.</p>
+
+            <h3>Capabilities</h3>
+            <ul>
+                <li><strong>Code Generation</strong> — Write new files, functions, classes, and modules</li>
+                <li><strong>Code Editing</strong> — Modify existing code with full context awareness</li>
+                <li><strong>Refactoring</strong> — Extract methods, rename symbols, restructure modules</li>
+                <li><strong>Dependency Management</strong> — Add/update packages, resolve conflicts</li>
+                <li><strong>Multi-language</strong> — Python, TypeScript, JavaScript, Go, Rust, Java, C#, and more</li>
+            </ul>
+
+            <h3>How It Works</h3>
+            <pre><code># The Coding Agent follows this workflow:
+
+1. Receive task from Task Queue
+2. Load relevant file context from Memory
+3. Analyze code structure and dependencies
+4. Plan modifications (AST-aware)
+5. Apply changes with minimal diff
+6. Validate syntax and imports
+7. Report completion to Task Queue</code></pre>
+
+            <h3>Configuration</h3>
+            <pre><code># .moon/agents/coding.yaml
+coding_agent:
+  style:
+    follow_existing: true    # Match project conventions
+    max_line_length: 100
+    prefer_explicit_types: true
+  
+  safety:
+    max_files_per_edit: 20   # Limit scope of changes
+    require_tests: true      # Don't ship without tests
+    lint_on_save: true       # Auto-fix lint issues
+  
+  languages:
+    python:
+      formatter: black
+      linter: ruff
+    typescript:
+      formatter: prettier
+      linter: eslint</code></pre>
+
+            <h2 id="testing">Testing Agent</h2>
+            <p>The Testing Agent ensures code quality by running existing tests, writing new ones, and diagnosing failures.</p>
+
+            <h3>Capabilities</h3>
+            <ul>
+                <li><strong>Test Execution</strong> — Run unit, integration, and e2e test suites</li>
+                <li><strong>Test Generation</strong> — Write tests for new and existing code</li>
+                <li><strong>Failure Diagnosis</strong> — Analyze test failures and identify root causes</li>
+                <li><strong>Coverage Analysis</strong> — Track and improve code coverage</li>
+                <li><strong>Regression Detection</strong> — Identify when changes break existing behavior</li>
+            </ul>
+
+            <h3>Testing Strategies</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Strategy</th>
+                        <th>When Used</th>
+                        <th>Tools</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Unit Testing</td>
+                        <td>After any code change</td>
+                        <td>pytest, jest, go test</td>
+                    </tr>
+                    <tr>
+                        <td>Integration Testing</td>
+                        <td>API/service changes</td>
+                        <td>supertest, httpx, testcontainers</td>
+                    </tr>
+                    <tr>
+                        <td>E2E Testing</td>
+                        <td>UI/workflow changes</td>
+                        <td>Playwright, Cypress</td>
+                    </tr>
+                    <tr>
+                        <td>Property Testing</td>
+                        <td>Complex logic</td>
+                        <td>Hypothesis, fast-check</td>
+                    </tr>
+                    <tr>
+                        <td>Mutation Testing</td>
+                        <td>Test quality validation</td>
+                        <td>mutmut, Stryker</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Configuration</h3>
+            <pre><code># .moon/agents/testing.yaml
+testing_agent:
+  coverage:
+    minimum: 80              # Minimum coverage threshold
+    fail_on_decrease: true   # Fail if coverage drops
+  
+  strategies:
+    unit:
+      enabled: true
+      framework: auto-detect
+    integration:
+      enabled: true
+      docker_compose: true
+    e2e:
+      enabled: false         # Enable manually
+      browser: chromium</code></pre>
+
+            <h2 id="documentation">Documentation Agent</h2>
+            <p>The Documentation Agent automatically generates and maintains documentation based on code analysis.</p>
+
+            <h3>Capabilities</h3>
+            <ul>
+                <li><strong>README Generation</strong> — Create and update project README files</li>
+                <li><strong>API Documentation</strong> — Generate OpenAPI/Swagger specs from code</li>
+                <li><strong>Code Comments</strong> — Add meaningful inline documentation</li>
+                <li><strong>Change Logs</strong> — Auto-generate from commit history</li>
+                <li><strong>Architecture Docs</strong> — Create system diagrams and explanations</li>
+            </ul>
+
+            <h3>Output Formats</h3>
+            <ul>
+                <li>Markdown (README, guides)</li>
+                <li>OpenAPI 3.0 (REST APIs)</li>
+                <li>GraphQL Schema docs</li>
+                <li>JSDoc / Python docstrings</li>
+                <li>Mermaid diagrams</li>
+            </ul>
+
+            <h3>Configuration</h3>
+            <pre><code># .moon/agents/documentation.yaml
+documentation_agent:
+  auto_update: true         # Update docs on code changes
+  formats:
+    - markdown
+    - openapi
+  
+  readme:
+    sections:
+      - overview
+      - installation
+      - usage
+      - api
+      - contributing
+  
+  api_docs:
+    output: docs/api/
+    format: openapi-3.0
+    include_examples: true</code></pre>
+
+            <h2 id="deployment">Deployment Agent</h2>
+            <p>The Deployment Agent handles building, packaging, and deploying applications across environments.</p>
+
+            <h3>Capabilities</h3>
+            <ul>
+                <li><strong>Container Building</strong> — Create optimized Docker images</li>
+                <li><strong>CI/CD Pipeline</strong> — Configure and manage build pipelines</li>
+                <li><strong>Cloud Deployment</strong> — Deploy to AWS, GCP, Azure, or custom infrastructure</li>
+                <li><strong>Environment Management</strong> — Handle staging, production, and preview environments</li>
+                <li><strong>Rollback</strong> — Automatically rollback on failed health checks</li>
+            </ul>
+
+            <h3>Supported Platforms</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Platform</th>
+                        <th>Deployment Types</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>AWS</td>
+                        <td>ECS, Lambda, EC2, S3</td>
+                    </tr>
+                    <tr>
+                        <td>Google Cloud</td>
+                        <td>Cloud Run, GKE, App Engine</td>
+                    </tr>
+                    <tr>
+                        <td>Azure</td>
+                        <td>Container Apps, AKS, Functions</td>
+                    </tr>
+                    <tr>
+                        <td>Vercel</td>
+                        <td>Serverless, Edge Functions</td>
+                    </tr>
+                    <tr>
+                        <td>Fly.io</td>
+                        <td>Containers, Machines</td>
+                    </tr>
+                    <tr>
+                        <td>Kubernetes</td>
+                        <td>Any K8s cluster</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Configuration</h3>
+            <pre><code># .moon/agents/deployment.yaml
+deployment_agent:
+  default_platform: docker
+  
+  environments:
+    staging:
+      auto_deploy: true      # Deploy on PR merge
+      url: https://staging.example.com
+    production:
+      auto_deploy: false     # Require manual approval
+      url: https://example.com
+      health_check: /api/health
+      rollback_on_failure: true
+  
+  docker:
+    registry: ghcr.io/eduard5524
+    build_args:
+      NODE_ENV: production
+  
+  notifications:
+    slack: "#deployments"
+    on_success: true
+    on_failure: true</code></pre>
+
+            <h2>Agent Communication</h2>
+            <p>Agents communicate through the Task Queue using structured messages:</p>
+            <pre><code>{
+  "from": "coding_agent",
+  "to": "testing_agent",
+  "type": "task_complete",
+  "payload": {
+    "files_changed": ["src/auth/login.ts", "src/auth/middleware.ts"],
+    "summary": "Added JWT validation middleware",
+    "tests_needed": true
+  }
+}</code></pre>
+
+            <h2>Creating Custom Agents</h2>
+            <p>You can extend Moon with custom agents for domain-specific tasks:</p>
+            <pre><code>from moon import Agent, task
+
+class SecurityAgent(Agent):
+    name = "security"
+    description = "Scans code for security vulnerabilities"
+
+    @task("scan")
+    async def scan_code(self, files: list[str]):
+        # Run SAST tools
+        results = await self.run_tool("semgrep", files)
+        
+        # Report findings
+        for finding in results:
+            await self.report(
+                severity=finding.severity,
+                file=finding.file,
+                line=finding.line,
+                message=finding.message
+            )
+
+# Register the agent
+moon.register_agent(SecurityAgent)</code></pre>
+
+            <h2>Next Steps</h2>
+            <ul>
+                <li>Configure <a href="integrations.html">integrations</a> for your agents</li>
+                <li>Understand the <a href="architecture.html">system architecture</a></li>
+                <li>Try the <a href="getting-started.html#quickstart">quick start</a></li>
+            </ul>
+        </main>
+    </div>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

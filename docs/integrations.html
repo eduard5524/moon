@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Integrations - Moon</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar scrolled">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                <span class="logo-icon">&#9790;</span>
+                <span class="logo-text">Moon</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../index.html#features">Features</a></li>
+                <li><a href="../index.html#architecture">Architecture</a></li>
+                <li><a href="../index.html#agents">Agents</a></li>
+                <li><a href="index.html" class="nav-docs-link">Docs</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="https://github.com/eduard5524/moon" class="btn btn-ghost" target="_blank">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    GitHub
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="docs-layout">
+        <aside class="docs-sidebar">
+            <h4>Getting Started</h4>
+            <ul>
+                <li><a href="getting-started.html">Introduction</a></li>
+                <li><a href="getting-started.html#installation">Installation</a></li>
+                <li><a href="getting-started.html#quickstart">Quick Start</a></li>
+            </ul>
+            <h4>Core Concepts</h4>
+            <ul>
+                <li><a href="architecture.html">Architecture</a></li>
+                <li><a href="agents.html">Agents</a></li>
+                <li><a href="architecture.html#task-queue">Task Queue</a></li>
+                <li><a href="architecture.html#memory">Memory System</a></li>
+            </ul>
+            <h4>Agents</h4>
+            <ul>
+                <li><a href="agents.html#coding">Coding Agent</a></li>
+                <li><a href="agents.html#testing">Testing Agent</a></li>
+                <li><a href="agents.html#documentation">Documentation Agent</a></li>
+                <li><a href="agents.html#deployment">Deployment Agent</a></li>
+            </ul>
+            <h4>Integrations</h4>
+            <ul>
+                <li><a href="integrations.html" class="active">Overview</a></li>
+                <li><a href="integrations.html#git">Git</a></li>
+                <li><a href="integrations.html#docker">Docker</a></li>
+                <li><a href="integrations.html#cloud">Cloud Providers</a></li>
+            </ul>
+        </aside>
+
+        <main class="docs-content">
+            <h1>Integrations</h1>
+            <p>Moon integrates with the tools and services that power modern software development.</p>
+
+            <h2 id="git">Git</h2>
+            <p>Full Git integration for version control operations.</p>
+
+            <h3>Supported Operations</h3>
+            <ul>
+                <li>Clone, fetch, pull, push</li>
+                <li>Branch creation and management</li>
+                <li>Commit with meaningful messages</li>
+                <li>Pull request creation and updates</li>
+                <li>Merge conflict resolution</li>
+                <li>Interactive rebase</li>
+            </ul>
+
+            <h3>Supported Platforms</h3>
+            <ul>
+                <li>GitHub (Cloud & Enterprise)</li>
+                <li>GitLab (Cloud & Self-hosted)</li>
+                <li>Bitbucket</li>
+                <li>Azure DevOps</li>
+            </ul>
+
+            <h3>Configuration</h3>
+            <pre><code># .moon/integrations/git.yaml
+git:
+  platform: github
+  auto_commit: true
+  commit_style: conventional  # feat:, fix:, refactor:, etc.
+  branch_prefix: moon/
+  
+  pull_requests:
+    auto_create: true
+    draft: false
+    reviewers: ["@team-lead"]
+    labels: ["ai-generated"]
+    
+  hooks:
+    pre_commit:
+      - lint
+      - type-check
+    pre_push:
+      - test</code></pre>
+
+            <h2 id="docker">Docker</h2>
+            <p>Container-based isolation for safe code execution and deployment.</p>
+
+            <h3>Features</h3>
+            <ul>
+                <li>Sandboxed execution environments</li>
+                <li>Multi-stage build optimization</li>
+                <li>Docker Compose for multi-service setups</li>
+                <li>Registry push/pull</li>
+                <li>Image layer caching</li>
+            </ul>
+
+            <h3>Configuration</h3>
+            <pre><code># .moon/integrations/docker.yaml
+docker:
+  enabled: true
+  runtime: docker           # or podman
+  
+  sandbox:
+    image: moon-sandbox:latest
+    memory_limit: 4g
+    cpu_limit: 2
+    network: bridge
+    volumes:
+      - ./:/workspace:rw
+  
+  build:
+    cache: true
+    multi_stage: true
+    target_size: minimal
+  
+  registry:
+    url: ghcr.io
+    username: ${GITHUB_USER}
+    token: ${GITHUB_TOKEN}</code></pre>
+
+            <h2 id="terminal">Terminal & SSH</h2>
+            <p>Execute commands locally or on remote machines.</p>
+
+            <h3>Capabilities</h3>
+            <ul>
+                <li>Execute shell commands (bash, zsh, fish)</li>
+                <li>Interactive process management</li>
+                <li>SSH access to remote servers</li>
+                <li>Port forwarding and tunneling</li>
+                <li>Background process monitoring</li>
+            </ul>
+
+            <h3>Configuration</h3>
+            <pre><code># .moon/integrations/terminal.yaml
+terminal:
+  shell: bash
+  timeout: 300              # seconds
+  
+  ssh:
+    hosts:
+      production:
+        host: prod.example.com
+        user: deploy
+        key: ~/.ssh/deploy_key
+      staging:
+        host: staging.example.com
+        user: deploy
+        key: ~/.ssh/deploy_key
+  
+  safety:
+    blocked_commands:
+      - "rm -rf /"
+      - "dd if=/dev/zero"
+    require_approval:
+      - "sudo"
+      - "systemctl"</code></pre>
+
+            <h2 id="browser">Browser</h2>
+            <p>Web browsing capabilities for research, testing, and interaction.</p>
+
+            <h3>Features</h3>
+            <ul>
+                <li>Browse documentation and references</li>
+                <li>Interact with web UIs (Playwright)</li>
+                <li>Screenshot and visual testing</li>
+                <li>API exploration via browser dev tools</li>
+                <li>OAuth/SSO authentication flows</li>
+            </ul>
+
+            <h3>Configuration</h3>
+            <pre><code># .moon/integrations/browser.yaml
+browser:
+  engine: chromium
+  headless: true
+  
+  permissions:
+    - navigate
+    - screenshot
+    - interact
+    - download
+  
+  blocked_domains:
+    - "*.malware.example"
+  
+  viewport:
+    width: 1920
+    height: 1080</code></pre>
+
+            <h2 id="cloud">Cloud Providers</h2>
+            <p>Deploy and manage infrastructure across major cloud providers.</p>
+
+            <h3>AWS</h3>
+            <pre><code># .moon/integrations/cloud/aws.yaml
+aws:
+  region: us-east-1
+  services:
+    - ecs
+    - lambda
+    - s3
+    - rds
+    - cloudfront
+  
+  credentials:
+    access_key: ${AWS_ACCESS_KEY_ID}
+    secret_key: ${AWS_SECRET_ACCESS_KEY}
+  
+  defaults:
+    ecs:
+      cluster: production
+      service: web-app
+    lambda:
+      runtime: python3.11
+      memory: 256</code></pre>
+
+            <h3>Google Cloud</h3>
+            <pre><code># .moon/integrations/cloud/gcp.yaml
+gcp:
+  project: my-project-id
+  region: us-central1
+  services:
+    - cloud-run
+    - cloud-functions
+    - cloud-sql
+    - gcs
+  
+  credentials:
+    service_account: ${GCP_SERVICE_ACCOUNT_KEY}</code></pre>
+
+            <h3>Azure</h3>
+            <pre><code># .moon/integrations/cloud/azure.yaml
+azure:
+  subscription: ${AZURE_SUBSCRIPTION_ID}
+  resource_group: production
+  services:
+    - container-apps
+    - functions
+    - cosmos-db
+    - blob-storage
+  
+  credentials:
+    tenant_id: ${AZURE_TENANT_ID}
+    client_id: ${AZURE_CLIENT_ID}
+    client_secret: ${AZURE_CLIENT_SECRET}</code></pre>
+
+            <h2 id="memory-store">Memory Store</h2>
+            <p>Persistent storage for agent memory and context.</p>
+
+            <h3>Backends</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Backend</th>
+                        <th>Use Case</th>
+                        <th>Performance</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>SQLite</td>
+                        <td>Local development</td>
+                        <td>Fast, zero-config</td>
+                    </tr>
+                    <tr>
+                        <td>PostgreSQL</td>
+                        <td>Production, team use</td>
+                        <td>Scalable, concurrent</td>
+                    </tr>
+                    <tr>
+                        <td>Redis</td>
+                        <td>Working memory cache</td>
+                        <td>Ultra-fast reads</td>
+                    </tr>
+                    <tr>
+                        <td>Pinecone/Weaviate</td>
+                        <td>Vector search</td>
+                        <td>Semantic similarity</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>Configuration</h3>
+            <pre><code># .moon/integrations/memory.yaml
+memory:
+  backend: sqlite           # sqlite, postgres, redis
+  path: .moon/memory.db
+  
+  vector_store:
+    backend: local          # local, pinecone, weaviate
+    embedding_model: text-embedding-3-small
+    dimensions: 1536
+  
+  retention:
+    working_memory: 1h
+    episodic: 30d
+    semantic: forever</code></pre>
+
+            <h2>Next Steps</h2>
+            <ul>
+                <li>Learn about the <a href="architecture.html">system architecture</a></li>
+                <li>Explore <a href="agents.html">specialized agents</a></li>
+                <li>Follow the <a href="getting-started.html">getting started guide</a></li>
+            </ul>
+        </main>
+    </div>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

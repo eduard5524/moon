@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getting Started - Moon</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar scrolled">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                <span class="logo-icon">&#9790;</span>
+                <span class="logo-text">Moon</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../index.html#features">Features</a></li>
+                <li><a href="../index.html#architecture">Architecture</a></li>
+                <li><a href="../index.html#agents">Agents</a></li>
+                <li><a href="index.html" class="nav-docs-link">Docs</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="https://github.com/eduard5524/moon" class="btn btn-ghost" target="_blank">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    GitHub
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="docs-layout">
+        <aside class="docs-sidebar">
+            <h4>Getting Started</h4>
+            <ul>
+                <li><a href="getting-started.html" class="active">Introduction</a></li>
+                <li><a href="getting-started.html#installation">Installation</a></li>
+                <li><a href="getting-started.html#quickstart">Quick Start</a></li>
+            </ul>
+            <h4>Core Concepts</h4>
+            <ul>
+                <li><a href="architecture.html">Architecture</a></li>
+                <li><a href="agents.html">Agents</a></li>
+                <li><a href="architecture.html#task-queue">Task Queue</a></li>
+                <li><a href="architecture.html#memory">Memory System</a></li>
+            </ul>
+            <h4>Agents</h4>
+            <ul>
+                <li><a href="agents.html#coding">Coding Agent</a></li>
+                <li><a href="agents.html#testing">Testing Agent</a></li>
+                <li><a href="agents.html#documentation">Documentation Agent</a></li>
+                <li><a href="agents.html#deployment">Deployment Agent</a></li>
+            </ul>
+            <h4>Integrations</h4>
+            <ul>
+                <li><a href="integrations.html">Overview</a></li>
+                <li><a href="integrations.html#git">Git</a></li>
+                <li><a href="integrations.html#docker">Docker</a></li>
+                <li><a href="integrations.html#cloud">Cloud Providers</a></li>
+            </ul>
+        </aside>
+
+        <main class="docs-content">
+            <h1>Getting Started</h1>
+            <p>This guide will help you set up Moon and run your first autonomous task in minutes.</p>
+
+            <h2 id="prerequisites">Prerequisites</h2>
+            <ul>
+                <li>Python 3.10 or later</li>
+                <li>Docker (for containerized execution)</li>
+                <li>Git</li>
+                <li>An API key for your preferred LLM provider (OpenAI, Anthropic, etc.)</li>
+            </ul>
+
+            <h2 id="installation">Installation</h2>
+            <h3>Using pip</h3>
+            <pre><code>pip install moon-agent</code></pre>
+
+            <h3>Using Docker</h3>
+            <pre><code>docker pull eduard5524/moon:latest
+docker run -it --rm \
+  -v ~/.moon:/root/.moon \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  eduard5524/moon:latest</code></pre>
+
+            <h3>From Source</h3>
+            <pre><code>git clone https://github.com/eduard5524/moon.git
+cd moon
+pip install -e ".[dev]"</code></pre>
+
+            <h2 id="configuration">Configuration</h2>
+            <p>Create a configuration file at <code>~/.moon/config.yaml</code>:</p>
+            <pre><code># ~/.moon/config.yaml
+llm:
+  provider: openai          # or anthropic, local
+  model: gpt-4             # model identifier
+  api_key: ${OPENAI_API_KEY}  # environment variable reference
+
+agent:
+  max_iterations: 50       # max steps per task
+  approval_required: true  # ask before destructive actions
+  sandbox: docker          # execution environment
+
+integrations:
+  git:
+    auto_commit: true
+    branch_prefix: moon/
+  docker:
+    enabled: true
+  cloud:
+    provider: aws          # aws, gcp, azure
+    region: us-east-1</code></pre>
+
+            <h2 id="quickstart">Quick Start</h2>
+            <h3>1. Initialize in your project</h3>
+            <pre><code>cd your-project
+moon init</code></pre>
+            <p>This analyzes your project structure and creates a <code>.moon/</code> directory with project-specific configuration.</p>
+
+            <h3>2. Run your first task</h3>
+            <pre><code># Fix a bug
+moon run "Fix the null pointer exception in UserService.java"
+
+# Add a feature
+moon run "Add pagination to the /api/users endpoint"
+
+# Refactor code
+moon run "Extract the validation logic into a separate middleware"
+
+# Write tests
+moon run "Add unit tests for the PaymentProcessor class"</code></pre>
+
+            <h3>3. Review and approve</h3>
+            <p>Moon will:</p>
+            <ol>
+                <li>Analyze the codebase and plan the approach</li>
+                <li>Execute the plan step by step</li>
+                <li>Run tests to verify the changes</li>
+                <li>Open a PR or ask for approval before deploying</li>
+            </ol>
+
+            <h2 id="examples">Example Workflows</h2>
+            <h3>Bug Fix</h3>
+            <pre><code>$ moon run "The login form shows a 500 error when email contains a plus sign"
+
+&#9656; Analyzing error... found issue in src/auth/validators.ts:23
+&#9656; Email regex doesn't handle '+' character
+&#9656; Fixing regex pattern...
+&#9656; Adding test case for plus-sign emails
+&#9656; Running test suite... 47/47 passing
+&#10003; Fix committed to branch moon/fix-email-validation
+&#10003; PR #87 opened for review</code></pre>
+
+            <h3>Feature Addition</h3>
+            <pre><code>$ moon run "Add dark mode support to the dashboard"
+
+&#9656; Analyzing current theme system...
+&#9656; Planning: CSS variables, toggle component, persistence
+&#9656; Creating ThemeProvider context...
+&#9656; Updating 12 components with theme tokens...
+&#9656; Adding toggle to header navigation...
+&#9656; Persisting preference to localStorage...
+&#9656; Running visual regression tests...
+&#10003; Dark mode implemented across 12 components
+&#10003; PR #88 opened with before/after screenshots</code></pre>
+
+            <h3>Deployment</h3>
+            <pre><code>$ moon deploy --env staging
+
+&#9656; Building application...
+&#9656; Running pre-deployment checks...
+&#9656; Creating Docker image: moon-app:v2.1.4
+&#9656; Pushing to container registry...
+&#9656; Updating Kubernetes deployment...
+&#9656; Waiting for rollout...
+&#10003; Deployed to staging (https://staging.example.com)
+&#10003; Health checks passing</code></pre>
+
+            <h2>Next Steps</h2>
+            <ul>
+                <li>Learn about the <a href="architecture.html">system architecture</a></li>
+                <li>Explore <a href="agents.html">specialized agents</a></li>
+                <li>Configure <a href="integrations.html">integrations</a></li>
+            </ul>
+        </main>
+    </div>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

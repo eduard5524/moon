@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Architecture - Moon</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar scrolled">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                <span class="logo-icon">&#9790;</span>
+                <span class="logo-text">Moon</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="../index.html#features">Features</a></li>
+                <li><a href="../index.html#architecture">Architecture</a></li>
+                <li><a href="../index.html#agents">Agents</a></li>
+                <li><a href="index.html" class="nav-docs-link">Docs</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="https://github.com/eduard5524/moon" class="btn btn-ghost" target="_blank">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    GitHub
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="docs-layout">
+        <aside class="docs-sidebar">
+            <h4>Getting Started</h4>
+            <ul>
+                <li><a href="getting-started.html">Introduction</a></li>
+                <li><a href="getting-started.html#installation">Installation</a></li>
+                <li><a href="getting-started.html#quickstart">Quick Start</a></li>
+            </ul>
+            <h4>Core Concepts</h4>
+            <ul>
+                <li><a href="architecture.html" class="active">Architecture</a></li>
+                <li><a href="agents.html">Agents</a></li>
+                <li><a href="architecture.html#task-queue">Task Queue</a></li>
+                <li><a href="architecture.html#memory">Memory System</a></li>
+            </ul>
+            <h4>Agents</h4>
+            <ul>
+                <li><a href="agents.html#coding">Coding Agent</a></li>
+                <li><a href="agents.html#testing">Testing Agent</a></li>
+                <li><a href="agents.html#documentation">Documentation Agent</a></li>
+                <li><a href="agents.html#deployment">Deployment Agent</a></li>
+            </ul>
+            <h4>Integrations</h4>
+            <ul>
+                <li><a href="integrations.html">Overview</a></li>
+                <li><a href="integrations.html#git">Git</a></li>
+                <li><a href="integrations.html#docker">Docker</a></li>
+                <li><a href="integrations.html#cloud">Cloud Providers</a></li>
+            </ul>
+        </aside>
+
+        <main class="docs-content">
+            <h1>Architecture</h1>
+            <p>Moon uses a multi-agent architecture where a central Planner decomposes tasks and distributes them to specialized agents through a prioritized task queue.</p>
+
+            <h2 id="overview">System Overview</h2>
+            <pre><code>┌─────────────────────────────────────────────────┐
+│                    PLANNER                        │
+│  - Task decomposition                            │
+│  - Strategy selection                            │
+│  - Progress monitoring                           │
+│  - Error recovery                                │
+└────────────────────┬────────────────────────────┘
+                     │
+┌────────────────────▼────────────────────────────┐
+│                 TASK QUEUE                        │
+│  - Priority scheduling                           │
+│  - Dependency resolution                         │
+│  - Parallel execution                            │
+│  - Retry logic                                   │
+└───┬────────┬────────┬────────┬──────────────────┘
+    │        │        │        │
+┌───▼──┐ ┌──▼───┐ ┌──▼──┐ ┌──▼────┐
+│Coding│ │Test  │ │Docs │ │Deploy │
+│Agent │ │Agent │ │Agent│ │Agent  │
+└───┬──┘ └──┬───┘ └──┬──┘ └──┬────┘
+    │        │        │        │
+┌───▼────────▼────────▼────────▼──────────────────┐
+│              INTEGRATION LAYER                    │
+│  Memory | Git | Docker | Browser | Terminal |     │
+│  SSH | Cloud                                     │
+└─────────────────────────────────────────────────┘</code></pre>
+
+            <h2 id="planner">The Planner</h2>
+            <p>The Planner is the brain of Moon. It receives high-level task descriptions and breaks them down into concrete, executable steps.</p>
+
+            <h3>Responsibilities</h3>
+            <ul>
+                <li><strong>Task Decomposition</strong> — Breaks complex tasks into atomic subtasks</li>
+                <li><strong>Strategy Selection</strong> — Chooses the best approach based on context</li>
+                <li><strong>Progress Monitoring</strong> — Tracks execution and adjusts plans dynamically</li>
+                <li><strong>Error Recovery</strong> — Detects failures and creates recovery plans</li>
+                <li><strong>Human Escalation</strong> — Identifies when to ask for approval or clarification</li>
+            </ul>
+
+            <h3>Planning Process</h3>
+            <pre><code># Example: Planner decomposition for "Add user authentication"
+
+Task: Add user authentication
+├── 1. Analyze existing codebase structure
+│   ├── Identify framework (Express, FastAPI, etc.)
+│   ├── Check existing auth patterns
+│   └── Review database schema
+├── 2. Design authentication flow
+│   ├── Choose strategy (JWT, session, OAuth)
+│   ├── Define API endpoints
+│   └── Plan database migrations
+├── 3. Implement (Coding Agent)
+│   ├── Create auth middleware
+│   ├── Add login/register endpoints
+│   ├── Create user model/migration
+│   └── Add password hashing
+├── 4. Test (Testing Agent)
+│   ├── Unit tests for auth logic
+│   ├── Integration tests for endpoints
+│   └── Security tests (SQL injection, XSS)
+├── 5. Document (Documentation Agent)
+│   ├── API documentation
+│   ├── Auth flow diagram
+│   └── Setup instructions
+└── 6. Deploy (Deployment Agent)
+    ├── Update environment variables
+    ├── Run database migrations
+    └── Deploy to staging</code></pre>
+
+            <h2 id="task-queue">Task Queue</h2>
+            <p>The Task Queue manages the execution order of subtasks, handles dependencies, and enables parallel execution where possible.</p>
+
+            <h3>Features</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Priority Scheduling</td>
+                        <td>Critical-path tasks execute first</td>
+                    </tr>
+                    <tr>
+                        <td>Dependency Graph</td>
+                        <td>Tasks wait for prerequisites to complete</td>
+                    </tr>
+                    <tr>
+                        <td>Parallel Execution</td>
+                        <td>Independent tasks run simultaneously</td>
+                    </tr>
+                    <tr>
+                        <td>Retry Logic</td>
+                        <td>Failed tasks retry with exponential backoff</td>
+                    </tr>
+                    <tr>
+                        <td>Deadlock Detection</td>
+                        <td>Circular dependencies are identified and resolved</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2 id="memory">Memory System</h2>
+            <p>Moon maintains both short-term and long-term memory to preserve context across tasks and sessions.</p>
+
+            <h3>Memory Types</h3>
+            <ul>
+                <li><strong>Working Memory</strong> — Current task context, recent actions, active file contents</li>
+                <li><strong>Episodic Memory</strong> — Past task executions, what worked and what didn't</li>
+                <li><strong>Semantic Memory</strong> — Project knowledge, code patterns, architecture decisions</li>
+                <li><strong>Procedural Memory</strong> — Learned workflows, common fix patterns, deployment procedures</li>
+            </ul>
+
+            <h3>Memory Architecture</h3>
+            <pre><code>┌──────────────────────────────────────┐
+│          Working Memory               │
+│  (current context, active task)       │
+├──────────────────────────────────────┤
+│          Vector Store                 │
+│  (embeddings of code, docs, history)  │
+├──────────────────────────────────────┤
+│          Knowledge Graph              │
+│  (relationships, dependencies)        │
+├──────────────────────────────────────┤
+│          Persistent Storage           │
+│  (SQLite/PostgreSQL)                  │
+└──────────────────────────────────────┘</code></pre>
+
+            <h2 id="execution-sandbox">Execution Sandbox</h2>
+            <p>All code execution happens inside isolated Docker containers, ensuring safety and reproducibility.</p>
+
+            <h3>Sandbox Features</h3>
+            <ul>
+                <li><strong>Isolation</strong> — Each task runs in its own container</li>
+                <li><strong>Reproducibility</strong> — Deterministic environment setup</li>
+                <li><strong>Resource Limits</strong> — CPU, memory, and disk quotas</li>
+                <li><strong>Network Controls</strong> — Whitelisted external access</li>
+                <li><strong>Snapshots</strong> — Save and restore execution state</li>
+            </ul>
+
+            <h2 id="error-handling">Error Handling</h2>
+            <p>Moon handles errors at multiple levels:</p>
+            <ol>
+                <li><strong>Agent Level</strong> — Individual agents retry failed operations</li>
+                <li><strong>Task Level</strong> — Failed tasks are re-queued with adjusted parameters</li>
+                <li><strong>Plan Level</strong> — The Planner revises the strategy when approaches fail</li>
+                <li><strong>System Level</strong> — Critical failures trigger human escalation</li>
+            </ol>
+
+            <h2>Next Steps</h2>
+            <ul>
+                <li>Learn about <a href="agents.html">specialized agents</a></li>
+                <li>Configure <a href="integrations.html">integrations</a></li>
+                <li>See the <a href="getting-started.html">getting started guide</a></li>
+            </ul>
+        </main>
+    </div>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>
