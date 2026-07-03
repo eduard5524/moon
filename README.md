@@ -4,6 +4,36 @@
 
 Moon is a multi-agent AI system that autonomously handles the full software development lifecycle — from understanding requirements to deploying production-ready software.
 
+## Screenshots
+
+### Landing Page
+
+![Landing Page — Hero](screenshots/landing-hero.png)
+
+### Capabilities
+
+![Capabilities](screenshots/landing-features.png)
+
+### Architecture
+
+![Architecture Diagram](screenshots/landing-architecture.png)
+
+### Specialized Agents
+
+![Specialized Agents](screenshots/landing-agents.png)
+
+### Chat Interface
+
+![Chat Interface](screenshots/chat-page.png)
+
+### Authentication
+
+![Sign In Page](screenshots/auth-page.png)
+
+### Documentation
+
+![Documentation](screenshots/docs-page.png)
+
 ## Architecture
 
 ```
