@@ -119,10 +119,12 @@ def create_access_token(data: dict) -> str:
     return jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
 
 
-def verify_token(authorization: str = Header(None)) -> dict:
-    if not authorization or not authorization.startswith("Bearer "):
+def verify_token(authorization: str = Header(None), x_auth_token: str = Header(None)) -> dict:
+    # Check X-Auth-Token first (used when tunnel basic auth occupies Authorization)
+    auth_value = x_auth_token or authorization
+    if not auth_value or not auth_value.startswith("Bearer "):
         raise HTTPException(status_code=401, detail="Not authenticated")
-    token = authorization.split(" ")[1]
+    token = auth_value.split(" ")[1]
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
         return payload

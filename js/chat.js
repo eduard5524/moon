@@ -56,7 +56,7 @@ logoutBtn.addEventListener('click', (e) => {
 clearChatBtn.addEventListener('click', async () => {
     if (!confirm('Clear all chat history?')) return;
     try {
-        await fetch(getApiUrl('/api/chat/history'), {
+        await apiFetch('/api/chat/history', {
             method: 'DELETE',
             headers: { 'Authorization': `Bearer ${token}` }
         });
@@ -118,7 +118,7 @@ async function sendMessage(message) {
 
     // Stream response
     try {
-        const response = await fetch(getApiUrl('/api/chat'), {
+        const response = await apiFetch('/api/chat', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -231,7 +231,7 @@ function scrollToBottom() {
 
 async function loadChatHistory() {
     try {
-        const response = await fetch(getApiUrl('/api/chat/history'), {
+        const response = await apiFetch('/api/chat/history', {
             headers: { 'Authorization': `Bearer ${token}` }
         });
 
